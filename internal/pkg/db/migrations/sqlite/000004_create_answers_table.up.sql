@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS Answers(
+    AnswerID INTEGER PRIMARY KEY AUTOINCREMENT,
+    QuestionID INT NOT NULL,
+    IP VARCHAR (255) ,
+    ATimestamp VARCHAR (255) ,
+    AnswerB BOOLEAN ,
+    FOREIGN KEY (QuestionID) REFERENCES Questions(QuestionID)
+)

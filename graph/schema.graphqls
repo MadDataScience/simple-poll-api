@@ -1,0 +1,74 @@
+# GraphQL schema example
+#
+# https://gqlgen.com/getting-started/
+
+type User {
+  userID: ID!
+  email: String!
+}
+
+type Poll {
+  pollID: ID!
+  user: User!
+  title: String!
+  questions: [Question!]!
+}
+
+input NewPoll {
+  title: String!
+}
+
+type Question {
+  questionID: ID!
+  question: String!
+  qType: String!
+  answers: [Answer!]!
+}
+
+input NewQuestion {
+  pollID: ID!
+  question: String!
+  qType: String!
+}
+
+type Answer {
+  answerID: ID!
+  ip: String!
+  aTimestamp: String!
+  answerB: Boolean!
+}
+
+input NewAnswer {
+  answerB: Boolean!
+}
+
+input NewAnswers {
+  answers: [NewAnswer!]!
+}
+
+type Query {
+  polls: [Poll!]!
+}
+
+input NewUser {
+  email: String!
+  password: String!
+}
+
+input Login {
+  email: String!
+  password: String!
+}
+
+input RefreshTokenInput {
+  token: String!
+}
+
+type Mutation {
+  createUser(input: NewUser!): String!
+  login(input: Login!): String!
+  refreshToken(input: RefreshTokenInput!): String!
+  createPoll(input: NewPoll!): Poll!
+  createQuestion(input: NewQuestion!): Poll!
+  createAnswer(input: NewAnswers!): String!
+}
