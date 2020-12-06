@@ -2,16 +2,16 @@
 
 ```graphql
 query {
-	polls{
+  polls {
     title
-    questions{
+    questions {
       question
       qType
-      answers{
+      answers {
         answerB
       }
     }
-    user{
+    user {
       email
     }
   }
@@ -20,8 +20,8 @@ query {
 
 ```graphql
 mutation {
-  createPoll(input: {title: "What the?"}){
-    title,
+  createPoll(input: { title: "What the?" }) {
+    title
     pollID
   }
 }
@@ -29,7 +29,17 @@ mutation {
 
 ```graphql
 mutation {
-  createUser(input: {email: "paul@flourishtech.us", password: "123"})
+  createUser(input: { email: "paul@flourishtech.us", password: "123" })
+}
+```
+
+```graphql
+mutation {
+  refreshToken(
+    input: {
+      token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2MDczMDA4MzYsInVzZXJuYW1lIjoidXNlcjEifQ.dKR_Qc5hnP7fhjZNbT8zT8lyTJW5T-lx7S0wEDkgFGc"
+    }
+  )
 }
 ```
 
@@ -41,7 +51,7 @@ mutation {
 
 ```graphql
 query {
-  polls{
+  polls {
     pollID
     title
   }
@@ -50,12 +60,14 @@ query {
 
 ```graphql
 mutation {
-  createQuestion(input: {pollID: "1", question: "Are you not?", qType: "Boolean"}){
-    title,
-    pollID,
-    questions{
-     questionID,
-     question
+  createQuestion(
+    input: { pollID: "1", question: "Are you not?", qType: "Boolean" }
+  ) {
+    title
+    pollID
+    questions {
+      questionID
+      question
     }
   }
 }
